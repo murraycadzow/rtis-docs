@@ -1,4 +1,10 @@
-## Otago HCS (High Capacity Storage) 
+# Otago HCS (High Capacity Storage) 
+!!! overview "On this Page"
+      - To see where HCS fits within Storage check out [Storage Overview](../storage_options.md)
+      - What is HCS (High Capacity Storage)
+      - How to mount HCS on the Login node
+      - How to mount HCS on the cluster nodes
+      - How to Generate Auto Renewal Kereberos Tickets.
 
 
 HCS is the main data storage pool on the Otago campus. HCS is able to be mounted on desktop and lab computers. It is possible to mount HCS shares on the Cluster Login node to transfer data across but the connection is sub-optimal for high-speed computing and cannot (easily) be mounted across nodes in the cluster. We recommend that you use the HCS for your primary storage needs and transfer your data to your working area in `/projects/` when you want to work on it, and transfer results back to HCS for long term storage. 
@@ -6,8 +12,50 @@ HCS is the main data storage pool on the Otago campus. HCS is able to be mounted
 !!! note
     If you do not have an HCS share available for your department/group, please fill out the _[HCS Access Form](https://www.otago.ac.nz/its/forms/high-capacity-central-storage-hcs)_ .
 
+## Methods for Accessing HCS
 
-### Mounting HCS on the Login node
+How you access your data on the HCS will depend upon your use case. The 3 main use cases are detailed below
+
+1. [Accessing HCS shares from within an OnDemand HPC desktop session](#accessing-hcs-within-the-ondemand-hpc-desktop) - Good for being able to explore your files in a file browser
+2. [Accessing HCS share from the login node](#accessing-hcs-on-the-login-node) - Good for moving/copying small amounts of data, or browsing on the commandline
+3. [Accessing HCS shares from a compute node](#accessing-hcs-on-the-cluster-nodes---auks) - Good for when you want need to access data on HCS as part of a job
+
+!!! info
+    For best performance it is best to have a copy of the data you want to use on the research storage. For large transfers this is best done with Globus
+
+### Accessing HCS within the OnDemand HPC Desktop
+
+Accessing the HCS within an OnDemand HPC Desktop session is useful for when you want to be able to browse your files in a graphical file browser, or for moving/copying moderate amounts of data to/from the HCS.
+
+**SMB Local Mount from HPC Desktop GUI**  
+
+  1. Start an Otago HPC Desktop 
+  2. Open a Terminal window on the desktop
+  3. Type "kdestroy" to remove invalid older tickets
+  4. Type "kinit" and Enter your password 
+  5. Open File browser window  
+  6. Connect and login to HCS by entering the smb://username@storage.hcs-p01.otago.ac.nz/share-name address  
+  7. When the authentication window appears type in the domain "registry" if staff or "student" if you are using a student account, and your password  
+  8. Press connect and wait a few seconds for authentication and your HCS files to appear in the window.  
+
+!!! note
+    It can sometimes take up to 1 minute for the authentication process to complete
+
+<!-- TODO add paragraphs explaining the images -->
+![Connecting to HCS - create kerberos ticket with `kinit`](../../assets/images/kinit.png){width="600px"}
+
+
+
+
+
+
+![Connect to HCS - authenticating using samba in the file browser](../../assets/images/smbauth.png){width="600px"}
+
+
+![Connect to HCS - browsing hcs files in file browser](../../assets/images/files.png){width="600px"}
+
+
+### Accessing HCS on the Login node
 
 
 For small one job data transfers, you can mount your HCS share on the login node. This is not recommended for large data transfers or for data that will be used in a job as the connection is not optimal for high-speed computing. 
@@ -30,7 +78,11 @@ Otago MDS storage (Windows Managed Desktop Share) can be access on the cluster i
     2. Navigate to your HCS share ``/mnt/auto-mds/<your_first_inital_of_your_username>/<your_username>`` (the last portion of the HCS address)
         eg. if my MDS share is ``\\registry.otago.ac.nz\mdr\Profiles-V2\h\higje06p`` then navigate to ``/mnt/auto-mds/h/higje06p``
 
-### Mounting HCS on the cluster nodes - Auks
+
+!!! note
+    It can sometimes take up to 1 minute for the authentication process to complete after logging in and your HCS share to be available through this method
+
+### Accessing HCS on the cluster nodes - Auks
 
 
 The Auks Slurm plugin enables users to save their Kerberos ticket from the login node onto the Auks server. This saved ticket can then be used on any Slurm compute node to access HCS shares. The Kerberos ticket is automatically renewed by Auks and remains valid for up to 7 days. After this period, the ticket must be manually renewed. Once a user saves their Kerberos ticket, the renewal process happens automatically.
@@ -40,7 +92,7 @@ Whenever a user logs in to the Aoraki login node using their password, a new krb
 
 === "STAFF"
 
-    !!! terminal "code"
+    !!! terminal
 
         ```bash
         kinit userx01p@REGISTRY.OTAGO.AC.NZ
@@ -49,7 +101,7 @@ Whenever a user logs in to the Aoraki login node using their password, a new krb
 
 === "STUDENTS" 
 
-    !!! terminal "code"
+    !!! terminal
 
         ```bash
         kinit studx012@STUDENT.OTAGO.AC.NZ
@@ -65,11 +117,11 @@ Check if you have a valid krbtgt ticket:
 
 !!! terminal
 
-    ```bash
+    ``` bash
     [studx012@aoraki-login ~]$ klist
     ```
 
-    ```output
+    ``` output
     Ticket cache: KCM:40005987:63840
     Default principal: studx012@STUDENT.OTAGO.AC.NZ
 
@@ -78,12 +130,12 @@ Check if you have a valid krbtgt ticket:
         renew until 12/03/2024 08:56:14
     ```
 
-    ```bash
+    ``` bash
     [studx012@aoraki-login ~]$ kinit -R
     [studx012@aoraki-login ~]$ klist
     ```
     
-    ```output
+    ``` output
     Ticket cache: KCM:40005987:63840
     Default principal: studx012@STUDENT.OTAGO.AC.NZ
 
@@ -103,7 +155,7 @@ Ping server to verify connection:
     Auks API request succeed
     ```
 
-Save current krbtgt on the ausk server:
+Save current krbtgt on the auks server:
 
 
 !!! terminal 
@@ -214,3 +266,8 @@ To mitigate this, it is recommended to include a command such as sleep 20 in bat
     - Then create a cronjob to renew your ticket ``crontab -e`` then enter the following line to renew your ticket every hour:
     ``0 * * * * kinit  <username>@STUDENT.OTAGO.AC.NZ -k -t /home/<username>/<username>.keytab``
     - Ensure the permissions on your .keytab file are ``0600`` to keep it secure!
+
+
+!!! related-pages "What's next?"
+    Find out how to move Data on and off the Research Cluster on [Data Transfer](../../getting_started/data_transfer/data_transfer_overview.md) 
+

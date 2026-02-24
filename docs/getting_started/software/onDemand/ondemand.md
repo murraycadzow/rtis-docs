@@ -1,60 +1,83 @@
+---
+tags:
+  - onDemand
+---
+
 # Open OnDemand 
 
+!!! overview "On this Page"
+    - What is Open OnDemand
+    - How to get started with Open OnDemand
+ 
+<!-- TODO See if overview is in line with content -->
 
+<!-- TODO add initial OOD page screenshot -->
+Open OnDemand (OoD) is a web portal that lets you launch applications, access files, and interact with the cluster—all from your browser, with no software installation needed. When you start an application or session, Open OnDemand submits a Slurm job for you. These are called "interactive sessions." You can also use the portal to view files, check job status, and open a shell.
 
-Open OnDemand launches applications as scheduled Slurm jobs on your behalf when requested, right in your browser without installing any software. This load balances your job across a cluster of computers and allows for shared access with users. 
-Open OnDemand refers to these jobs as "interactive sessions." You can also access your files, view past jobs, and get shell access.
+**Key points:**
 
+- Interactive sessions are Slurm jobs managed for you by Open OnDemand.
+- Sessions will stay running even if you close your browser; you can see and manage them under "My Interactive Sessions."
+- To end a session, click "Delete" next to it.
 
-Slurm "Job time" is counted for interactive sessions as the total time the job runs. The job starts running as soon as a node is allocated for the job. The interactive session may still be running even if you do not have it open in your web browser. You can view all currently running interactive sessions under My Interactive Sessions. When you are done, you may stop an interactive session by clicking "Delete" on the session.
+**Ways to monitor usage:**
 
-**There are several ways to monitor usage:**
-
-- Since Open OnDemand submits jobs through Slurm, you can monitor usage as you would monitor your regular Slurm jobs.
-- View currently running (and recent) sessions launched by Open OnDemand under My Interactive Sessions.
-- View all currently running jobs under Jobs > Active Jobs.
+- Use the Open OnDemand dashboard to see your running and recent sessions.
+- Check **Jobs > Active Jobs** for all jobs (including those started by sbatch, srun, or Open OnDemand).
+- Use standard Slurm commands (like `squeue`, `sacct`) in a shell session for more details.
 
 ## Using Open OnDemand
 
-Here are the services provided via Open OnDemand.
-
+Open OnDemand provides several services:
 
 ### Files App
 
-Access the Files App from the top menu bar under Files > Home Directory. Using the Files App, you can use your web browser to:
+Access your files from the top menu: **Files > Home Directory**. You can:
 
-Create and delete files and directories.
-(need to add section on HCS and Globus)
-After you login you should see the OOD home page. 
+- Create, delete, and move files and folders.
+- Upload and download files.
+- (Section on HCS and Globus to be added.)
 
-![Open OnDemand Files App](/assets/images/ood_files_app.png){width="600px"}
+<!--TODO section on HCS and globus -->
+
+After logging in, you'll see the Open OnDemand home page.
+
+![Open OnDemand Files App](../../../assets/images/ood_files_app.png){width="600px"}
+
+!!! related-pages "What's next?"
+      - Find more information on [Using the Open OnDemand File Manager](ood_file_manager.md)
+      
+  <!-- TODO Are these pages the next step or relevant? -->
 
 ### View Active Jobs
 
+See and cancel your Slurm jobs from **Jobs > Active Jobs**. This includes jobs started via `sbatch`, `srun`, and Open OnDemand.
 
-View and cancel active Slurm jobs from Jobs > Active Jobs. This includes jobs started via sbatch and srun as well as jobs started (implicitly) via Open OnDemand (as discussed above).
-
-![Active Jobs](/assets/images/ood_activejobs.png){width="600px"}
-
-
+![Active Jobs](../../../assets/images/ood_activejobs.png){width="600px"}
 
 ### Shell Access
 
-Open OnDemand allows Aoraki shell access from the top menu bar under Clusters > Aoraki Cluster Shell Access.
+Get command-line access to the cluster from the top menu bar options: **Clusters > Aoraki Cluster Shell Access**.
 
-![Open OnDemand Shell](/assets/images/ood_shell.png){width="600px"}
+![Open OnDemand Shell](../../../assets/images/ood_shell.png){width="600px"}
+
+!!! related-pages "What's next?"
+      - Find more information on [Accessing the Shell through Open OnDemand](ood_shell.md)
+      
+  <!-- TODO Are these pages the next step or relevant? -->
 
 
 ### Interactive Apps
 
-Open OnDemand provides additional interactive apps. You can launch interactive apps from the Interactive Apps menu on the top menu bar. The available interactive apps include:
+Launch interactive applications from the **Interactive Apps** menu:
 
-Desktop App (for working with GUI-based programs)
-Jupyter Server (for working with Jupyter notebooks)
-RStudio Server (for working in RStudio sessions)
+- **Desktop App**: For GUI-based programs.
+- **Jupyter Server**: For Jupyter notebooks.
+- **RStudio Server**: For RStudio sessions.
 
-![Open OnDemand Files App](/assets/images/ood_interactive.png){width="600px"}
+![Open OnDemand Files App](../../../assets/images/ood_interactive.png){width="600px"}
 
+<!-- TODO update this image -->
 
 ### Desktop App
 
@@ -68,6 +91,10 @@ Before getting started, make sure you have access to the Research Cluster (by co
 
 Fill out the form presented to you and then press "Launch". (Note, as of this time, that the only partition that the Desktop app can be launched on when computing via Slurm is otago1, as we assume that most GUI usage would be for programs using one or a small number of cores). After a moment, the Desktop session will be initialized and allow you to specify the image compression and quality options. If you are unhappy with the default values, you can relaunch the session from this page with different choices. Then, press "Launch Desktop" and the Desktop will open in a new tab.
 
+!!! related-pages "What's next?"
+      - Find more information on [OnDemand HPC Desktop](hpc_desktop.md)
+      
+  <!-- TODO Are these pages the next step or relevant? -->
 
 ### Interacting with Files
 
@@ -109,17 +136,21 @@ This will mount your HCS share on the local machine and allow you to access and 
 
 #### Copy your HCS data to your project directory
 
-1\. Naviagate to your hcs data and copy it to your user projecy directory
+1. Naviagate to your hcs data and copy it to your user projecy directory
 
-![Connect to HCS](/assets/images/copydata.png){width="600px}
-
-
-2\. When you have finished processing copy your data back to your HCS Share.
+    ![Connect to HCS](../../../assets/images/copydata.png){width="600px}
 
 
+2. When you have finished processing copy your data back to your HCS Share.
 
 
 
 
 
+
+!!! related-pages "What's next?"
+      - Looking for something else? See [Software Overview page](../index.md)
+      -  For how to run a job on the cluster go to [Running Jobs](../../running/running_jobs_overview.md)
+      
+  <!-- TODO Are these pages the next step or relevant? -->
 

@@ -1,9 +1,13 @@
-site_name: Research and Teaching IT Support
+site_name: eResearch Support
+site_url: https://rtis-docs.github.io/research-cluster/
+repo_url: https://github.com/rtis-docs/research-cluster
+repo_name: "Cluster Documentation"
 theme : 
   name: material
   custom_dir: overrides
   logo: "assets/images/UoO_Logo_RGB_Horz_Gold-REV.svg"
   favicon: "assets/images/uoo-favicon-32x32.png"
+  language: en
   font: 
     text: 'wickliffe-sans'
     code: 'Roboto Mono'
@@ -16,12 +20,17 @@ theme :
     - navigation.indexes
     - toc.follow
 
+watch:
+  - includes/
 
+hooks:
+  - mkdocs_hooks.py
 
 plugins:
   - search
   - awesome-nav
   - macros
+  - include-markdown
   - table-reader
   - caption:
       table:
@@ -34,7 +43,11 @@ extra_css:
   - assets/stylesheets/extra.css
   - assets/stylesheets/neoteroi-mkdocs.css
 
+extra_javascript:
+    - assets/javascripts/general.js
+
 markdown_extensions: 
+  - abbr
   - attr_list
   - admonition
   - tables
@@ -52,14 +65,17 @@ markdown_extensions:
           format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.tabbed:
       alternate_style: true
+  - pymdownx.snippets:
+      auto_append:
+        - includes/abbreviations.md
   - neoteroi.cards
 
 extra:
   support_email: '<a href="mailto:rtis.support@otago.ac.nz">rtis.support@otago.ac.nz</a>'
-  apptainer: "/software/software_environments/self_managed/apptainer"
-  nextflow: "/workflows/nextflow"
-  conda: "/software/software_environments/self_managed/conda"
-  spack: "/software/software_environments/self_managed/spack"
-  modules: "/software/software_environments/self_managed/modules.md"
-  sbgrid: "/software/software_environments/self_managed/sbgrid.md"
+  apptainer: "/getting_started/software/software_environments/apptainer"
+  nextflow: "/getting_started/workflows/nextflow"
+  conda: "/getting_started/software/software_environments/conda"
+  spack: "/getting_started/software/software_environments/spack"
+  modules: "/getting_started/software/software_environments/modules"
+  sbgrid: "/getting_started/software/software_environments/sbgrid"
   home_quota: "40 GB"
