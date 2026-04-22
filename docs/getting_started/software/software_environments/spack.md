@@ -17,7 +17,7 @@ Users wanting to install their own Spack packages should install and manage thei
 
 
 !!! note
-    All pre-installed Spack packages are also available by default via [environment module]({{modules}}) without needing to use Spack.
+    All pre-installed Spack packages are also available by default via [environment modules]({{modules}}) without needing to use Spack.
 
 
 To initialise use of the read-only shared Spack instance, run:
