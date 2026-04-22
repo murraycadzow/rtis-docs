@@ -126,7 +126,7 @@
     "Bohra": {
         "description": "Bohra",
         "domains": [
-            "container",
+            "apptainer",
             "biology"
         ],
         "homepage": "https://github.com/MDU-PHL/bohra) is a microbial genomics pipeline.",
