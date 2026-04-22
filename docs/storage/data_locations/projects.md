@@ -13,7 +13,7 @@ The projects storage is high-performance and is ideal for temporarily storing da
 
 We recommend having a copy of your source data on HCS, and transferring a copy to `/projects/` for working on, then removing this working copy once finished and transferring results back to HCS.
  
-To apply for a projects directory, please fill out the [storage-signup-form](../getting_started/access/signup.md) form.
+To apply for a projects directory, please fill out the [storage-signup-form](../../getting_started/access/signup.md) form.
  
  
 ## When to use /projects/ storage
@@ -36,7 +36,7 @@ Temporary Data Processing:
  
 !!! warning
  
-    Note that the **Research storage is not backed up** and it is the responsibility of the user to ensure their important data is safe. See [data transfer](../getting_started/data_transfer/data_transfer_overview.md) for options to move data you want to retain. If you need assistance with backing up your data, please email {{support_email}}.
+    Note that the **Research storage is not backed up** and it is the responsibility of the user to ensure their important data is safe. See [data transfer](../../getting_started/data_transfer/data_transfer_overview.md) for options to move data you want to retain. If you need assistance with backing up your data, please email {{support_email}}.
  
 
 
