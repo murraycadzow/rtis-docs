@@ -13,7 +13,7 @@ This is currently in developement and until implemented user management is done 
 
 
 !!! related-pages "What next?"
-    - [Getting an account](../access/signup.md)
+    - [Getting an account](../../access/signup.md)
     - [See the status of projects your account can access](user.md)
     - [Manage a project's allocation](manager.md)
-    - Where to store your data and what your options are found on our [Storage Overview](../../storage/storage_options.md)
+    - Where to store your data and what your options are found on our [Storage Overview](../../../storage/storage_options.md)

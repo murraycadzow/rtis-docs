@@ -13,7 +13,7 @@ from pathlib import Path
 import json
 import os
 
-software_list_path = os.getenv("SOFTWARE_LIST_PATH", "docs/assets/software_list.json")
+software_list_path = os.getenv("SOFTWARE_LIST_PATH", "docs/assets/software_list.spack.json")
 
 # Makes software data accessible for the HTML override templates
 def on_env(env, config, files, **kwargs):
