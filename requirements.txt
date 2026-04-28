@@ -18,7 +18,7 @@ httpcore==1.0.9
 httpx==0.28.1
 idna==3.10
 Jinja2==3.1.6
-lxml==6.0.0
+lxml==6.1.0
 Markdown==3.10
 markdown-it-py==3.0.0
 MarkupSafe==3.0.3
@@ -44,13 +44,13 @@ platformdirs==4.5.1
 proselint==0.14.0
 pydantic==2.11.7
 pydantic_core==2.33.2
-Pygments==2.19.2
-pymdown-extensions==10.20
+Pygments==2.20.0
+pymdown-extensions==10.21.2
 python-dateutil==2.9.0.post0
 pytz==2025.2
 PyYAML==6.0.3
 pyyaml_env_tag==1.1
-requests==2.32.4
+requests==2.33.0
 rich==14.0.0
 setuptools==80.9.0
 six==1.17.0
